@@ -1,5 +1,6 @@
 from config import TOKEN
 import telebot
+from random import choice
 #!/usr/bin/python
 
 # This is a simple echo bot using the decorator mechanism.
@@ -35,6 +36,12 @@ def send_info(message):
 @bot.message_handler(content_types=['photo'])
 def photo_id(message):
     bot.reply_to(message, "о прикольная фоточка")
+
+
+@bot.message_handler(commands=['fact'])
+def fact_handler(message):
+    fact = choice(["Древние римляне чистили зубы высушенными и измельченными мозгами мышей вместо зубной пасты.", "Интересные факты о нашем теле. Человеческий мозг не обрабатывает даже 10% поступающей в него информации.", "Когда эскимосские дети болеют простудой, их матери высасывают сопли губами прямо из их носа.", "50% бутилированной воды в мире на самом деле обычная вода из под крана, подвергнутая фильтрации."])
+    bot.reply_to(message, fact)
 
 
 # Handle all other messages with content_type 'text' (content_types defaults to ['text'])
